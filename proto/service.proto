@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "Task3/Proto";
+
+message Void {}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string secretCode = 3;
+  string emailAddress = 4;
+}
+
+message Users {
+  repeated User users = 1;
+}
+
+message Photo {
+  int32 id = 1;
+  bytes byteCode = 2;
+  string description = 3;
+  string dateOfCreation = 4;
+  string location = 5;
+  string secretCode = 6;
+}
+
+message Photos {
+  repeated Photo photos = 1;
+}
+
+service MemoryBookService {
+  rpc CreateUser(User) returns (User);
+  rpc Login(User) returns (User);
+  rpc StorePhoto(Photo) returns (Photo);
+  rpc UpdatePhoto(Photo) returns (Photo);
+  rpc DeletePhoto(Photo) returns (Void);
+  rpc GetAllPhotos(Photo) returns (Photos);
+}
